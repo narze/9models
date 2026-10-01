@@ -1,0 +1,37 @@
+name: Sync models
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/sync-models.ts
+      - run: pnpm test
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: src/lib/models.generated.json
+          branch: chore/sync-models
+          commit-message: 'chore: sync models from RubyLLM registry'
+          title: 'chore: sync models from RubyLLM registry'
+          body: |
+            Daily sync of `src/lib/models.generated.json` from https://rubyllm.com/models.json.
+
+            Filters live in `src/lib/modelSync.ts`. Per-model `exclude` and `include` live in `scripts/models.overrides.json`.
+          delete-branch: true
