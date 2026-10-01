@@ -37,11 +37,13 @@
 		flex-direction: column;
 		gap: 12px;
 		align-items: center;
-		overflow-y: auto;
 	}
 	img {
-		width: 100%;
+		max-width: 100%;
+		max-height: 50dvh;
+		width: auto;
 		height: auto;
+		object-fit: contain;
 		border: 2px solid var(--line);
 		border-radius: 10px;
 	}
