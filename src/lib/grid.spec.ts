@@ -8,6 +8,7 @@ import {
 	setSlot,
 	toShareText
 } from './grid';
+import { MODELS } from './models';
 
 describe('setSlot', () => {
 	it('puts a model into a slot and infers its lab', () => {
@@ -63,7 +64,7 @@ describe('filterModels', () => {
 	it('matches whole lab by lab name', () => {
 		const out = filterModels('xai');
 		expect(out.map(([lab]) => lab)).toEqual(['xAI']);
-		expect(out[0][1].length).toBe(4);
+		expect(out[0][1]).toEqual(MODELS.find(([lab]) => lab === 'xAI')![1]);
 	});
 
 	it('returns nothing when no match', () => {

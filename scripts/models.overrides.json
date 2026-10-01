@@ -1,0 +1,6 @@
+{
+	"exclude": ["Mistral Medium", "Devstral Small 2505", "DeepSeek V4 Flash Vision Exp"],
+	"include": {
+		"Anthropic": ["Claude Mythos 5"]
+	}
+}
