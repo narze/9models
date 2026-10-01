@@ -9,7 +9,5 @@
 		"Qwen3.5 Plus 2026-04-20",
 		"Qwen3.8 Max 0902"
 	],
-	"include": {
-		"Anthropic": ["Claude Mythos 5"]
-	}
+	"include": {}
 }
