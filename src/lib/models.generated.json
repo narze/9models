@@ -22,7 +22,11 @@
 		"Command A Reasoning",
 		"Command A Vision"
 	],
-	"DeepSeek": ["DeepSeek V4.1 Flash", "DeepSeek V4 Flash", "DeepSeek V4 Pro"],
+	"DeepSeek": [
+		"DeepSeek V4.1 Flash",
+		"DeepSeek V4 Flash",
+		"DeepSeek V4 Pro"
+	],
 	"Google": [
 		"Gemini 3.8 Flash",
 		"Gemini 3.7 Flash",
