@@ -1,22 +1,21 @@
 <script lang="ts">
 	import Sheet from './Sheet.svelte';
-	import { toShareText } from './grid';
-	import { my9 } from './store.svelte';
 
 	let { open = $bindable(false), src }: { open?: boolean; src: string } = $props();
 
-	let copyLabel = $state('คัดลอกเป็นข้อความ');
+	let copyLabel = $state('คัดลอกภาพ');
 
 	$effect(() => {
-		if (open) copyLabel = 'คัดลอกเป็นข้อความ';
+		if (open) copyLabel = 'คัดลอกภาพ';
 	});
 
 	async function copy() {
 		try {
-			await navigator.clipboard.writeText(toShareText(my9.slots, my9.caption));
+			const blob = await (await fetch(src)).blob();
+			await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
 			copyLabel = 'คัดลอกแล้ว';
 		} catch {
-			copyLabel = 'คัดลอกไม่ได้ ลองกดค้างที่รูปแทน';
+			copyLabel = 'คัดลอกไม่ได้ ลองกดค้างที่ภาพแทน';
 		}
 	}
 </script>
@@ -38,11 +37,13 @@
 		flex-direction: column;
 		gap: 12px;
 		align-items: center;
-		overflow-y: auto;
 	}
 	img {
-		width: 100%;
+		max-width: 100%;
+		max-height: 50dvh;
+		width: auto;
 		height: auto;
+		object-fit: contain;
 		border: 2px solid var(--line);
 		border-radius: 10px;
 	}

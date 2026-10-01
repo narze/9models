@@ -130,6 +130,6 @@ export async function makeImage(slots: Slots, caption: string): Promise<string> 
 
 	ctx.font = `500 26px ${body}`;
 	ctx.fillStyle = '#5d6c7b';
-	ctx.fillText('สร้างของคุณเองที่ My9Models', pad, canvas.height - 30);
+	ctx.fillText('สร้างของคุณได้ที่ 9models.narze.net', pad, canvas.height - 30);
 	return canvas.toDataURL('image/png');
 }

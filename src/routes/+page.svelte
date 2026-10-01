@@ -64,7 +64,13 @@
 		</button>
 		<button class="btn" onclick={reset}>ล้างทั้งหมด</button>
 	</div>
-	<p class="hint">รายชื่อ model อ้างอิงจาก registry ของ RubyLLM ไม่มีในลิสต์ก็พิมพ์ชื่อเองได้</p>
+	<p class="hint">
+		ชื่อ Model บางส่วนอ้างอิงจาก <a
+			href="https://rubyllm.com/models.json"
+			target="_blank"
+			rel="noopener noreferrer">RubyLLM</a
+		>
+	</p>
 	<p class="hint">เลือกแล้ว {my9.count}/9 · แตะช่องเพื่อเลือก model</p>
 </main>
 
@@ -123,5 +129,16 @@
 		font-size: 0.85rem;
 		color: var(--muted);
 		margin-top: 14px;
+	}
+	.hint a {
+		color: var(--accent);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+		transition: opacity 0.15s;
+	}
+	.hint a:hover {
+		opacity: 0.75;
 	}
 </style>

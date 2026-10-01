@@ -34,12 +34,13 @@
 <style>
 	dialog {
 		border: 2px solid var(--line);
-		border-radius: 16px 16px 0 0;
+		border-radius: 16px;
 		padding: 0;
 		width: min(100%, 560px);
 		max-width: 100%;
 		max-height: 82dvh;
-		margin: auto auto 0;
+		margin: auto;
+		overflow: hidden;
 		background: var(--paper);
 		color: var(--ink);
 	}
