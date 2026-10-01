@@ -18,6 +18,7 @@ export const LABS: Record<string, string> = {
 	NVIDIA: '#4d8a00',
 	Microsoft: '#0a7abf',
 	Cohere: '#8a5a44',
+	Cursor: '#1c1c1c',
 	[FALLBACK_LAB]: '#8a3f7a'
 };
 
@@ -41,6 +42,7 @@ export const MODELS: [lab: string, models: string[]][] = [
 	['NVIDIA', ['Nemotron 3 Ultra', 'Nemotron 3 Super', 'Nemotron 3 Nano']],
 	['Microsoft', ['Phi-4', 'MAI-Image 2.5']],
 	auto('Cohere'),
+	['Cursor', ['Composer 2.5', 'Composer 2', 'Composer 1']],
 	[
 		FALLBACK_LAB,
 		[
