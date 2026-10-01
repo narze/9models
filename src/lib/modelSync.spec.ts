@@ -100,6 +100,47 @@ describe('buildGenerated', () => {
 		expect(out.OpenAI).toEqual(['GPT-6 Sol', 'GPT-6 Luna', 'GPT-5']);
 	});
 
+	it('maps selected OpenRouter vendor prefixes to labs', () => {
+		const out = build([
+			raw('openrouter', 'moonshotai/kimi-k3', 'Kimi K3'),
+			raw('openrouter', 'z-ai/glm-5.3', 'GLM-5.3'),
+			raw('openrouter', 'minimax/minimax-m3', 'MiniMax-M3'),
+			raw('openrouter', 'qwen/qwen3.8-flash', 'Qwen3.8 Flash'),
+			raw('openrouter', 'openai/gpt-5', 'OpenAI: GPT-5'),
+			raw('bedrock', 'moonshotai.kimi-k3', 'Kimi K3 (Global)')
+		]);
+		expect(out).toEqual({
+			Moonshot: ['Kimi K3'],
+			'Z.ai': ['GLM-5.3'],
+			MiniMax: ['MiniMax-M3'],
+			Alibaba: ['Qwen3.8 Flash']
+		});
+	});
+
+	it('drops OpenRouter variants and non-chat Qwen models', () => {
+		const out = build([
+			raw('openrouter', 'qwen/qwen3.8-27b', 'Qwen3.8 27B'),
+			raw('openrouter', 'qwen/qwen3.8-27b:free', 'Qwen3.8 27B (free)'),
+			raw('openrouter', 'qwen/qwen3-asr-1.7b', 'Qwen: Qwen3 ASR 1.7B'),
+			raw('openrouter', 'qwen/qwen3-vl-8b-instruct', 'Qwen3 VL 8B Instruct'),
+			raw('openrouter', 'z-ai/glm-4.6v', 'GLM-4.6V')
+		]);
+		expect(out).toEqual({ Alibaba: ['Qwen3.8 27B'] });
+	});
+
+	it('caps OpenRouter labs to the newest models, but not first-party labs', () => {
+		const many = (mk: (i: number) => RawModel) => Array.from({ length: 15 }, (_, i) => mk(i));
+		const day = (i: number) => `2026-06-${String(i + 1).padStart(2, '0')} 00:00:00 UTC`;
+		const out = build([
+			...many((i) => raw('openrouter', `qwen/q${i}`, `Qwen ${i}`, day(i))),
+			...many((i) => raw('openai', `gpt-${i}`, `GPT ${i}`, day(i)))
+		]);
+		expect(out.Alibaba).toHaveLength(10);
+		expect(out.Alibaba[0]).toBe('Qwen 14');
+		expect(out.Alibaba).not.toContain('Qwen 4');
+		expect(out.OpenAI).toHaveLength(15);
+	});
+
 	it('applies overrides: exclude by name or id, include extra names first', () => {
 		const out = build(
 			[

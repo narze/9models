@@ -31,11 +31,25 @@ export const PROVIDER_LAB: Record<string, string> = {
 	cohere: 'Cohere'
 };
 
-// Non-chat models, plus Z.ai models that Mistral's API resells (Z.ai is hand-curated).
-const DENY_ID =
-	/embed|tts|transcribe|realtime|voxtral|ocr|computer-use|customtools|labs-|search|^zai-/;
+// Labs without a first-party provider in the registry. OpenRouter lists them under a vendor prefix.
+export const OPENROUTER_PREFIX_LAB: Record<string, string> = {
+	'moonshotai/': 'Moonshot',
+	'z-ai/': 'Z.ai',
+	'minimax/': 'MiniMax',
+	'qwen/': 'Alibaba'
+};
 
-const ALIAS_ID = /-latest$/;
+export const ALL_LABS = [...Object.values(PROVIDER_LAB), ...Object.values(OPENROUTER_PREFIX_LAB)];
+
+// OpenRouter vendors list many sizes and variants, so only the newest models are kept.
+const OPENROUTER_LAB_CAP = 10;
+
+// Non-chat and vision-only models, plus Z.ai models that Mistral's API resells (Z.ai comes from OpenRouter).
+const DENY_ID =
+	/embed|tts|transcribe|realtime|voxtral|ocr|asr|computer-use|customtools|labs-|search|-vl|omni|\dv(-|$)|^zai-/;
+
+// Aliases (-latest) and OpenRouter variants (:free, :batch).
+const ALIAS_ID = /-latest$|:/;
 const LATEST_SUFFIX = /\s*\(latest\)$/i;
 
 const parseDate = (s: string | null): number =>
@@ -44,6 +58,12 @@ const parseDate = (s: string | null): number =>
 const isTextOnly = (m: RawModel): boolean => {
 	const out = m.modalities?.output ?? [];
 	return out.length === 1 && out[0] === 'text';
+};
+
+const labOf = (m: RawModel): string | undefined => {
+	if (m.provider !== 'openrouter') return PROVIDER_LAB[m.provider];
+	const prefix = Object.keys(OPENROUTER_PREFIX_LAB).find((p) => m.id.startsWith(p));
+	return prefix && OPENROUTER_PREFIX_LAB[prefix];
 };
 
 export function buildGenerated(
@@ -56,7 +76,7 @@ export function buildGenerated(
 
 	const byLab = new Map<string, Map<string, number>>();
 	for (const m of models) {
-		const lab = PROVIDER_LAB[m.provider];
+		const lab = labOf(m);
 		const created = parseDate(m.created_at);
 		const name = m.name.replace(LATEST_SUFFIX, '');
 		if (!lab || Number.isNaN(created) || created < cutoff.getTime()) continue;
@@ -68,11 +88,13 @@ export function buildGenerated(
 		byLab.set(lab, names);
 	}
 
+	const capped = new Set(Object.values(OPENROUTER_PREFIX_LAB));
 	const result: Generated = {};
 	for (const [lab, names] of byLab) {
-		result[lab] = [...names]
+		const sorted = [...names]
 			.sort(([an, at], [bn, bt]) => bt - at || bn.localeCompare(an))
 			.map(([name]) => name);
+		result[lab] = capped.has(lab) ? sorted.slice(0, OPENROUTER_LAB_CAP) : sorted;
 	}
 	for (const [lab, extra] of Object.entries(opts.overrides?.include ?? {})) {
 		result[lab] = [...new Set([...extra, ...(result[lab] ?? [])])];
