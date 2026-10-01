@@ -1,0 +1,15 @@
+{
+	"exclude": [
+		"Mistral Medium",
+		"Devstral Small 2505",
+		"DeepSeek V4 Flash Vision Exp",
+		"Kimi K2 0711",
+		"Kimi K2 0905",
+		"MiniMax-M2 Her",
+		"Qwen3.5 Plus 2026-04-20",
+		"Qwen3.8 Max 0902"
+	],
+	"include": {
+		"Anthropic": ["Claude Mythos 5"]
+	}
+}

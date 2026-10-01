@@ -64,10 +64,7 @@
 		</button>
 		<button class="btn" onclick={reset}>ล้างทั้งหมด</button>
 	</div>
-	<p class="hint">
-		รายชื่อ model อ้างอิงจาก registry ของ RubyLLM (อัปเดต 28 ก.ย. 2026)
-		ไม่มีในลิสต์ก็พิมพ์ชื่อเองได้
-	</p>
+	<p class="hint">รายชื่อ model อ้างอิงจาก registry ของ RubyLLM ไม่มีในลิสต์ก็พิมพ์ชื่อเองได้</p>
 	<p class="hint">เลือกแล้ว {my9.count}/9 · แตะช่องเพื่อเลือก model</p>
 </main>
 
