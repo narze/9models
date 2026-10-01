@@ -1,7 +1,7 @@
 // Usage: node scripts/sync-models.ts
 // Fetches the RubyLLM model registry and writes src/lib/models.generated.json.
 import { readFileSync, writeFileSync } from 'node:fs';
-import { PROVIDER_LAB, buildGenerated, type RawModel } from '../src/lib/modelSync.ts';
+import { ALL_LABS, buildGenerated, type RawModel } from '../src/lib/modelSync.ts';
 
 const SOURCE = 'https://rubyllm.com/models.json';
 const OUT = new URL('../src/lib/models.generated.json', import.meta.url);
@@ -15,7 +15,7 @@ if (!Array.isArray(models) || models.length === 0) throw new Error('Registry is 
 const generated = buildGenerated(models, {
 	now: new Date(),
 	overrides: JSON.parse(readFileSync(OVERRIDES, 'utf8')),
-	requiredLabs: Object.values(PROVIDER_LAB)
+	requiredLabs: ALL_LABS
 });
 
 writeFileSync(OUT, JSON.stringify(generated, null, '\t') + '\n');
