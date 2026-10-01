@@ -130,4 +130,15 @@
 		color: var(--muted);
 		margin-top: 14px;
 	}
+	.hint a {
+		color: var(--accent);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+		transition: opacity 0.15s;
+	}
+	.hint a:hover {
+		opacity: 0.75;
+	}
 </style>
