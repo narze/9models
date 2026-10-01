@@ -9,29 +9,25 @@
 	let query = $state('');
 	let own = $state('');
 	let ownPlaceholder = $state('ไม่มีในลิสต์? พิมพ์ชื่อเอง');
-	let open = $state(false);
 	let active = $state(0);
 
-	// Open when a slot index arrives from the parent; reset when the sheet closes.
+	// Reset the form each time a slot is picked from the parent.
 	$effect(() => {
-		if (index !== null && !open) {
-			active = index;
-			query = '';
-			own = '';
-			ownPlaceholder = 'ไม่มีในลิสต์? พิมพ์ชื่อเอง';
-			open = true;
-		}
+		if (index === null) return;
+		active = index;
+		query = '';
+		own = '';
+		ownPlaceholder = 'ไม่มีในลิสต์? พิมพ์ชื่อเอง';
 	});
-	$effect(() => {
-		if (!open) index = null;
-	});
+
+	const close = () => (index = null);
 
 	const groups = $derived(filterModels(query));
 	const current = $derived(my9.slots[active]);
 
 	function choose(name: string) {
 		my9.set(active, name);
-		open = false;
+		close();
 	}
 
 	function addOwn() {
@@ -46,7 +42,11 @@
 	}
 </script>
 
-<Sheet bind:open title={`อันดับ ${active + 1}`} label="เลือก model">
+<Sheet
+	bind:open={() => index !== null, (v) => !v && close()}
+	title={`อันดับ ${active + 1}`}
+	label="เลือก model"
+>
 	<input
 		class="search"
 		type="search"
@@ -87,7 +87,7 @@
 				class="btn"
 				onclick={() => {
 					my9.set(active, null);
-					open = false;
+					close();
 				}}>เอาออกจากช่องนี้</button
 			>
 		</div>
