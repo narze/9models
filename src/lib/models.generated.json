@@ -15,8 +15,13 @@
 		"Claude Sonnet 4.5"
 	],
 	"Cohere": [
+		"North Small Translate",
 		"North Mini Code",
 		"Command A Plus",
+		"Tiny Aya Water",
+		"Tiny Aya Global",
+		"Tiny Aya Fire",
+		"Tiny Aya Earth",
 		"Command A Translate",
 		"Command A Reasoning",
 		"Command A Vision"
