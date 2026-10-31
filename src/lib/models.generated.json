@@ -1,5 +1,6 @@
 {
 	"Anthropic": [
+		"Claude Haiku 5.5",
 		"Claude Sonnet 5.5",
 		"Claude Opus 5.5",
 		"Claude Fable 5.1",
@@ -15,18 +16,24 @@
 		"Claude Sonnet 4.5"
 	],
 	"Cohere": [
+		"North Small Translate",
 		"North Mini Code",
 		"Command A Plus",
+		"Tiny Aya Water",
+		"Tiny Aya Global",
+		"Tiny Aya Fire",
+		"Tiny Aya Earth",
 		"Command A Translate",
 		"Command A Reasoning",
 		"Command A Vision"
 	],
 	"DeepSeek": [
-		"DeepSeek V4.1 Flash",
+		"DeepSeek V4.1 Flash 1017",
 		"DeepSeek V4 Flash",
 		"DeepSeek V4 Pro"
 	],
 	"Google": [
+		"Gemini 4 Argon",
 		"Gemini 3.8 Flash",
 		"Gemini 3.7 Flash",
 		"Gemini 3.6 Flash",
@@ -43,17 +50,25 @@
 		"Gemini 2.5 Flash"
 	],
 	"Mistral": [
+		"DeepSeek V4.1 Flash 1017",
+		"Mistral Large 4.0.8",
+		"Mistral Large 4",
+		"GLM-5.2",
 		"Mistral Medium 3.5",
 		"Mistral Small 4",
 		"Devstral 2",
-		"Codestral",
+		"Ministral 3 8B",
+		"Ministral 3 3B",
+		"Ministral 3 14B",
 		"Mistral Medium 3.1",
+		"Codestral 25.08",
 		"Devstral Small",
 		"Devstral Medium",
 		"Mistral Small 3.2",
 		"Mistral Medium 3"
 	],
 	"OpenAI": [
+		"GPT-6.1 Terra",
 		"GPT-6.1 Sol",
 		"GPT-6 Sol",
 		"GPT-6 Luna",
@@ -77,14 +92,10 @@
 		"GPT-5 Nano",
 		"GPT-5 Mini",
 		"GPT-5",
-		"o3-pro",
-		"o4-mini",
-		"o3",
-		"GPT-4.1 nano",
-		"GPT-4.1 mini",
-		"GPT-4.1"
+		"o3-pro"
 	],
 	"MiniMax": [
+		"MiniMax-M3.1-Flash",
 		"MiniMax-M3",
 		"MiniMax-M2.7",
 		"MiniMax-M2.5",
@@ -93,11 +104,13 @@
 		"MiniMax M1"
 	],
 	"Moonshot": [
+		"Kimi K3.1 Pro",
 		"Kimi K3",
 		"Kimi K2.7 Code",
 		"Kimi K2.6",
 		"Kimi K2.5",
-		"Kimi K2 Thinking"
+		"Kimi K2 Thinking",
+		"Kimi K2 Instruct 0905"
 	],
 	"Alibaba": [
 		"Qwen 3.8 Max Prime",
@@ -109,7 +122,7 @@
 		"Qwen3.7 Max",
 		"Qwen3.6 Flash",
 		"Qwen3.6 27B",
-		"Qwen3.6 Max Preview"
+		"Qwen3.6 35B-A3B"
 	],
 	"Z.ai": [
 		"GLM 5.3 Prime",
