@@ -34,6 +34,7 @@
 		"DeepSeek V4 Pro"
 	],
 	"Google": [
+		"Gemini 4 Neon",
 		"Gemini 4 Hydrogen",
 		"Gemini 4 Carbon",
 		"Gemini 4 Argon",
@@ -48,8 +49,8 @@
 		"Gemini 3.1 Flash Lite Preview",
 		"Gemini 3.1 Pro Preview",
 		"Gemini 3 Flash Preview",
-		"Gemini 2.5 Pro",
 		"Gemini 2.5 Flash-Lite",
+		"Gemini 2.5 Pro",
 		"Gemini 2.5 Flash"
 	],
 	"Mistral": [
@@ -60,6 +61,7 @@
 		"Mistral Medium 3.5",
 		"Mistral Small 4",
 		"Devstral 2",
+		"Mistral Large 3",
 		"Ministral 3 8B",
 		"Ministral 3 3B",
 		"Ministral 3 14B",
@@ -70,6 +72,12 @@
 		"Mistral Small 3.2"
 	],
 	"OpenAI": [
+		"GPT-6.2 Sol Healthcare",
+		"GPT-6.2 Astra Healthcare",
+		"GPT-6.1 Sol Healthcare",
+		"GPT-6 Astra Healthcare",
+		"GPT-6.2 Sol",
+		"GPT-6.2 Astra",
 		"GPT-6.1 Terra",
 		"GPT-6.1 Sol",
 		"GPT-6 Sol",
@@ -85,7 +93,6 @@
 		"GPT-5.4 mini",
 		"GPT-5.4 Pro",
 		"GPT-5.4",
-		"GPT-5.3 Codex Spark",
 		"GPT-5.3 Codex",
 		"GPT-5.2 Pro",
 		"GPT-5.2",
@@ -108,7 +115,6 @@
 		"Kimi K2.7 Code",
 		"Kimi K2.6",
 		"Kimi K2.5",
-		"Kimi K2 Thinking",
 		"Kimi K2 Instruct 0905"
 	],
 	"Alibaba": [
@@ -124,7 +130,7 @@
 		"Qwen3.6 27B"
 	],
 	"Z.ai": [
-		"GLM 5.3 FlashX Legal",
+		"GLM-5.3-FlashX-Legal",
 		"GLM 5.3 Prime",
 		"GLM 5.3 FlashX",
 		"GLM-5.3-Flash",
@@ -140,7 +146,6 @@
 		"Grok 4.6",
 		"Grok 4.5",
 		"Grok 4.3",
-		"Grok Build 0.1",
 		"Grok 4.20 Multi-Agent",
 		"Grok 4.20 (Reasoning)",
 		"Grok 4.20 (Non-Reasoning)"
